@@ -29,3 +29,10 @@ class Joueur:
         self.prenom = prenom
         self.date_naissance = date_naissance
         self.id_fede = id_fede
+
+    def to_dict(self):
+        return self.__dict__
+    
+    def from_json(self, json_dict):
+        self.__dict__ = json_dict
+        return self

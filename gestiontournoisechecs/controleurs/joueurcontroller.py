@@ -1,21 +1,19 @@
 from gestiontournoisechecs.modeles.joueur import Joueur
-from gestiontournoisechecs.json.joueurencoder import JoueurEncoder
 from gestiontournoisechecs.json.config import PATH_JSONFILE_JOUEUR
 import json
 
 
-class JoueurController():
-
+class JoueurController:
     @staticmethod
     def save_joueurs(list_joueurs):
-        with open(PATH_JSONFILE_JOUEUR, 'w', encoding="utf-8") as file:
+        with open(PATH_JSONFILE_JOUEUR, "w", encoding="utf-8") as file:
             list_dict_joueurs = [joueur.to_dict() for joueur in list_joueurs]
             json.dump(list_dict_joueurs, file, indent=4)
 
     @staticmethod
     def load_joueurs():
-        with open(PATH_JSONFILE_JOUEUR, 'r', encoding="utf-8") as file:
-            list_joueurs = [Joueur(**dict) for dict in json.load(file)]
+        with open(PATH_JSONFILE_JOUEUR, "r", encoding="utf-8") as file:
+            list_joueurs = [Joueur().from_json(dict) for dict in json.load(file)]
             return list_joueurs
 
 
